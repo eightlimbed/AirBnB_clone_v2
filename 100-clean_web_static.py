@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-from fabric.api import env, put, run, local, cd
-from datetime import datetime
+from fabric.api import local, cd, run
 from sys import argv
 import os
 
@@ -9,9 +8,8 @@ import os
 env.hosts = ['54.172.87.188', '34.227.61.41']
 env.user = 'ubuntu'
 
-num = int(argv[3].split('=')[-1])
-versions = sorted([f for f in os.listdir('versions')])
-trash, keep = versions[:num], versions[num:]
+if len(argv > 1):
+    num = int(argv[3].split('=')[-1])
 
 
 def do_clean(number=0):
@@ -19,6 +17,15 @@ def do_clean(number=0):
     including the most recent, to keep. If number is 1 or 0, only the most
     recent version will be kept. If the number is 2, only the 2 most recent
     versions will be kept, etc.'''
+
+    versions = sorted([f for f in os.listdir('versions')])
+    if num:
+        trash, keep = versions[:num], versions[num:]
+    else:
+        i = 0
+        while i < int(number):
+            trash.append(versions[i])
+            i += 1
 
     # Delete all the old versions on local machine
     for file in trash:
