@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from fabric.api import env, put, run, local
+from fabric.api import env, put, run, local, cd
 from datetime import datetime
 import os
 
@@ -21,11 +21,10 @@ def do_clean(number=0):
     trash, keep = versions[:int(number)], versions[int(number):]
 
     # Delete all the old versions on local machine
-    os.chdir('versions')
     for file in trash:
-        os.remove(file)
+        local('rm versions/{}'.format(file))
 
     # Delete all the old versions on the servers
     with cd('/data/web_static/releases'):
         for file in trash:
-            run('rm {}'.format(file))
+            run('rm -f {}'.format(file))
