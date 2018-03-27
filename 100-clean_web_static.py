@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from fabric.api import local, cd, run
+from fabric.api import local, cd, run, env
 from sys import argv
 import os
 
@@ -8,7 +8,7 @@ import os
 env.hosts = ['54.172.87.188', '34.227.61.41']
 env.user = 'ubuntu'
 
-if len(argv > 1):
+if len(argv) > 1:
     num = int(argv[3].split('=')[-1])
 
 
