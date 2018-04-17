@@ -35,6 +35,7 @@ def number_route(n):
     if type(n) is int:
         return str(n) + ' is a number'
 
+
 @app.route('/number_template/<int:n>')
 def number_template(n):
     if type(n) is int:
