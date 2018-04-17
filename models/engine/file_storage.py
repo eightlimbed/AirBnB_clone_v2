@@ -69,3 +69,9 @@ class FileStorage:
         # to this method
         FileStorage.__objects = {k: v for k, v in FileStorage.__objects.items()
                                  if v.id != obj.id}
+
+    def close(self):
+        '''
+            Calls reload() for deserializing the JSON file to objects
+        '''
+        self.reload()
