@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
             based or not on the class name.
         '''
         obj_list = []
-        if os.environ['HBNB_TYPE_STORAGE'] == 'db':
+        if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
             storage = DBStorage()
         else:
             storage = FileStorage()

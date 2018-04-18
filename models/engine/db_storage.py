@@ -58,7 +58,7 @@ class DBStorage:
         '''
         all_objects = {}
         if cls:
-            query = self.__session.query(cls).all()
+            query = self.__session.query(models.classes[cls]).all()
             for obj in query:
                 key = '{}.{}'.format(obj.__class__.__name__, obj.id)
                 all_objects[key] = obj
@@ -105,7 +105,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(Session)
-        self.__session = Session()
+        self.__session = Session
 
     def close(self):
         '''
