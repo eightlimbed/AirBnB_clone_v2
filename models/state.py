@@ -23,7 +23,7 @@ class State(BaseModel, Base):
             `BaseModel.created_at`
             `BaseModel.updated_at`
     '''
-    if os.getenv.get('HBNB_TYPE_STORAGE') != 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
 
         @property
         def cities(self):
