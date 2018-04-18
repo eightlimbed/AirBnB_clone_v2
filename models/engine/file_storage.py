@@ -22,6 +22,12 @@ class FileStorage:
             using the `new()` method. If it is 'db', a list of all objects in
             the MySQL database will be returned.
         '''
+        all_objects = {}
+        if cls:
+            for key, val in self.__objects.items():
+                if val.__class__ == cls:
+                    all_objects[key] = val
+            return all_objects
         return self.__objects
 
     def new(self, obj):
