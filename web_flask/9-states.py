@@ -34,15 +34,16 @@ def states_by_id(id=None):
         if val.state_id == str(id):
             cities.append(val)
 
-    # set err and return if the id didn't match any states
-    if len(cities) == 0:
-        return render_template('9-states.html', err=1)
-
     # Get the name of the state
     name = None
     for key, val in storage.all('State').items():
         if val.id == str(id):
             name = val.name
+
+    # set err and return if the id didn't match any states
+    if len(cities) == 0 and name == None:
+        return render_template('9-states.html', err=1)
+
     return render_template('9-states.html', name=name, cities=cities)
 
 
