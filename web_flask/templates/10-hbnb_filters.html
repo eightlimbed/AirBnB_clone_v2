@@ -22,15 +22,14 @@
                     <ul class="popover">
                         {% for state in states|sort(attribute="name") %}
                         <li><h2>{{ state.name }}</h2></li>
-                          <li>
                           <ul class="popover_list">
-                            {% for city in cities|sort(attribute="name") %}
+                          {% for city in cities|sort(attribute="name") %}
                               {% if city.state_id == state.id %}
                                   <li>{{ city.name }}</li>
                               {% endif %}
                             {% endfor %}
-                          </ul>
                           </li>
+                          </ul>
                         {% endfor %}
                     </ul>
                 </div>

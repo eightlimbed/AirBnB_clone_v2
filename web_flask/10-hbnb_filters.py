@@ -23,9 +23,9 @@ def states():
     for key, val in storage.all('State').items():
         states.append(val)
     for key, val in storage.all('City').items():
-        states.append(val)
+        cities.append(val)
     for key, val in storage.all('Amenity').items():
-        states.append(val)
+        amenities.append(val)
     return render_template('10-hbnb_filters.html', states=states,
                            cities=cities, amenities=amenities)
 
