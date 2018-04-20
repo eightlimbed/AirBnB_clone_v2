@@ -41,7 +41,7 @@ def states_by_id(id=None):
             name = val.name
 
     # set err and return if the id didn't match any states
-    if len(cities) == 0 and name == None:
+    if len(cities) == 0 and name is None:
         return render_template('9-states.html', err=1)
 
     return render_template('9-states.html', name=name, cities=cities)
